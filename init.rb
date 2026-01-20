@@ -14,8 +14,10 @@ Redmine::Plugin.register :daou_webhook do
   }, partial: 'settings/daou_webhook'
 end
 
-# Rails 초기화 및 리로드(개발 모드) 시 실행
-Rails.configuration.to_prepare do
+apply_patches = -> do
+  load File.expand_path('../lib/daou_webhook/issue_patch.rb', __FILE__)
+  load File.expand_path('../lib/daou_webhook/issues_helper_patch.rb', __FILE__)
+
   # IssuesHelper 패치 (Git History 탭 추가)
   unless IssuesHelper.ancestors.include?(DaouWebhook::IssuesHelperPatch)
     IssuesHelper.prepend(DaouWebhook::IssuesHelperPatch)
@@ -25,4 +27,12 @@ Rails.configuration.to_prepare do
   unless Issue.ancestors.include?(DaouWebhook::IssuePatch)
     Issue.prepend(DaouWebhook::IssuePatch)
   end
+end
+
+# 1. 즉시 실행 (부팅 시 적용)
+apply_patches.call
+
+# 2. 리로드 시 실행 (개발 모드 대응)
+Rails.configuration.to_prepare do
+  apply_patches.call
 end
