@@ -8,10 +8,6 @@ Redmine::Plugin.register :daou_webhook do
   requires_redmine :version_or_higher => '6.0.0'
   url 'https://github.com/daoutech-rimichoi/daou_webhook'
   author_url 'mailto:rimichoi@daou.co.kr'
-
-  settings default: {
-    'git_base_url' => 'https://repo.daou.co.kr'
-  }, partial: 'settings/daou_webhook'
 end
 
 apply_patches = -> do

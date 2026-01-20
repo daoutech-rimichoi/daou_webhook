@@ -134,30 +134,39 @@ module DaouWebhook
       nil
     end
 
-    def git_base_url
-      @git_base_url ||= Setting.plugin_daou_webhook['git_base_url']
-    end
-
     def build_commit_url(revision)
-      return nil unless revision && git_base_url.present?
-      
+      return nil unless revision
+
+      # Try to infer from payload links
+      if (repo_url = @payload.dig('repository', 'links', 'self', 0, 'href'))
+        base_url = repo_url.sub(/\/browse\/?$/, '')
+        return "#{base_url}/commits/#{revision}"
+      end
+
+      # Fallback to repo.daou.co.kr
       repo_slug = @payload.dig('repository', 'slug')
       project_key = @payload.dig('repository', 'project', 'key')
-      
+
       return nil unless project_key && repo_slug
-      
-      "#{git_base_url}/projects/#{project_key}/repos/#{repo_slug}/commits/#{revision}"
+
+      "https://repo.daou.co.kr/projects/#{project_key}/repos/#{repo_slug}/commits/#{revision}"
     end
 
     def build_pr_url(pr_number)
-      return nil unless pr_number && git_base_url.present?
-      
+      return nil unless pr_number
+
+      # Try to use self link directly
+      if (pr_url = @payload.dig('pullRequest', 'links', 'self', 0, 'href'))
+        return pr_url
+      end
+
+      # Fallback to repo.daou.co.kr
       repo_slug = @payload.dig('pullRequest', 'fromRef', 'repository', 'slug')
       project_key = @payload.dig('pullRequest', 'fromRef', 'repository', 'project', 'key')
-      
+
       return nil unless project_key && repo_slug
-      
-      "#{git_base_url}/projects/#{project_key}/repos/#{repo_slug}/pull-requests/#{pr_number}/overview"
+
+      "https://repo.daou.co.kr/projects/#{project_key}/repos/#{repo_slug}/pull-requests/#{pr_number}/overview"
     end
   end
 end
