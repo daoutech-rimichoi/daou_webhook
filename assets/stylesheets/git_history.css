@@ -1,0 +1,74 @@
+.bb-note-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-left-width: 4px;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.bb-note-header {
+  margin-bottom: 6px;
+}
+
+.bb-note-badge {
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.bb-note-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.bb-note-title a {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.bb-note-title a:hover {
+  text-decoration: underline;
+}
+
+.bb-note-details {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.bb-detail-item {
+  margin-right: 15px;
+}
+
+.bb-label {
+  color: #888;
+}
+
+.bb-commit-hash {
+  font-family: monospace;
+}
+
+/* Status Colors */
+.bb-status-open { border-left-color: #28a745; }
+.bb-status-open .bb-note-badge { background-color: #28a745; }
+
+.bb-status-merged { border-left-color: #6f42c1; }
+.bb-status-merged .bb-note-badge { background-color: #6f42c1; }
+
+.bb-status-declined { border-left-color: #dc3545; }
+.bb-status-declined .bb-note-badge { background-color: #dc3545; }
+
+.bb-status-deleted { border-left-color: #6c757d; }
+.bb-status-deleted .bb-note-badge { background-color: #6c757d; }
+
+.bb-status-default { border-left-color: #007bff; }
+.bb-status-default .bb-note-badge { background-color: #007bff; }
+
+.bb-status-push { border-left-color: #17a2b8; }
+.bb-status-push .bb-note-badge { background-color: #17a2b8; }
+

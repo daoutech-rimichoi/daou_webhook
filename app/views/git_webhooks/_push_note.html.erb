@@ -1,0 +1,24 @@
+<div class="bb-note-card bb-push-note bb-status-push">
+  <div class="bb-note-header">
+    <span class="bb-note-badge">PUSH</span>
+    <span class="bb-note-title"><%= branch %></span>
+  </div>
+  
+  <div class="bb-note-details">
+    <span class="bb-detail-item">
+      <span class="bb-label">저장소:</span> <%= project_name %>/<%= repo_name %>
+    </span>
+    <span class="bb-detail-item">
+      <span class="bb-label">사용자:</span> <%= actor_name %>
+    </span>
+    <span>
+      <span class="bb-label">커밋:</span>
+      <% if from_url && to_url %>
+        <a href="<%= from_url %>" target="_blank" class="bb-commit-hash"><%= from_hash[0..7] %></a> &rarr; 
+        <a href="<%= to_url %>" target="_blank" class="bb-commit-hash"><%= to_hash[0..7] %></a>
+      <% else %>
+        <span class="bb-commit-hash"><%= from_hash[0..7] %> &rarr; <%= to_hash[0..7] %></span>
+      <% end %>
+    </span>
+  </div>
+</div>

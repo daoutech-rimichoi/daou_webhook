@@ -1,0 +1,25 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'git_history', :plugin => 'daou_webhook' %>
+<% end %>
+
+<% histories = @issue.git_histories.recent %>
+<% if histories.any? %>
+  <% histories.each do |history| %>
+    <div class="note">
+      <div class="journal has-notes">
+        <h4 class='note-header'>
+          <% if history.user %>
+            <%= authoring history.created_on, history.user, :label => :label_added_time_by %>
+          <% else %>
+            <%= l(:label_added_time_by, author: "시스템", age: time_tag(history.created_on)).html_safe %>
+          <% end %>
+        </h4>
+        <div class="wiki">
+          <%= history.notes.html_safe %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

@@ -1,0 +1,4 @@
+en:
+  label_git_base_url: "Base URL"
+  text_git_base_url_description: "Enter the base URL of your Git server (e.g., https://repo.daou.co.kr)"
+  label_git_history: "Git History"

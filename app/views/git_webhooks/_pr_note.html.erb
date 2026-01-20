@@ -1,0 +1,32 @@
+<%
+  status_class, status_text = case status
+    when 'open'     then ['bb-status-open', '열림']
+    when 'merged'   then ['bb-status-merged', '병합']
+    when 'declined' then ['bb-status-declined', '거부']
+    when 'deleted'  then ['bb-status-deleted', '삭제']
+    else                 ['bb-status-default', status]
+  end
+%>
+<div class="bb-note-card bb-pr-note <%= status_class %>">
+  <div class="bb-note-header">
+    <span class="bb-note-badge"><%= status_text %></span>
+    <span class="bb-note-title">
+      <% if pr_url %>
+        <a href="<%= pr_url %>" target="_blank">PR #<%= pr_number %>: <%= title %></a>
+      <% else %>
+        PR #<%= pr_number %>: <%= title %>
+      <% end %>
+    </span>
+  </div>
+  <div class="bb-note-details">
+    <span class="bb-detail-item">
+      <span class="bb-label">저장소:</span> <%= project_name %>/<%= repo_name %>
+    </span>
+    <span class="bb-detail-item">
+      <span class="bb-label">브랜치:</span> <%= from_branch %> &rarr; <%= to_branch %>
+    </span>
+    <span>
+      <span class="bb-label">사용자:</span> <%= actor_name %>
+    </span>
+  </div>
+</div>
