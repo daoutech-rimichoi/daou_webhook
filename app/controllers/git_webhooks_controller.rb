@@ -2,6 +2,7 @@
 
 class GitWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token
+  skip_before_action :check_if_login_required
   before_action :parse_payload
 
   def receive

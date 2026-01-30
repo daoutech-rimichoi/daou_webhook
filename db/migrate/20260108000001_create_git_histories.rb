@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateGitHistories < ActiveRecord::Migration[7.2]
+class CreateGitHistories < ActiveRecord::Migration[6.1]
   def change
     create_table :git_histories, if_not_exists: true do |t|
       t.references :issue, type: :integer, null: true, foreign_key: {to_table: :issues}, index: true

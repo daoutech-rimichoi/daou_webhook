@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DaouWebhook
-  class GitHistory < ApplicationRecord
+  class GitHistory < ActiveRecord::Base
     belongs_to :issue, optional: true
     belongs_to :user, optional: true
 

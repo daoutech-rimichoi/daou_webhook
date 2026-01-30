@@ -4,8 +4,8 @@ Redmine::Plugin.register :daou_webhook do
   name 'Daoutech Webhook Plugin'
   author 'rimichoi'
   description 'Git webhook integration for Daoutech Redmine'
-  version '0.0.1'
-  requires_redmine :version_or_higher => '6.0.0'
+  version '0.0.2'
+  requires_redmine :version_or_higher => '5.0.0'
   url 'https://github.com/daoutech-rimichoi/daou_webhook'
   author_url 'mailto:rimichoi@daou.co.kr'
 end
